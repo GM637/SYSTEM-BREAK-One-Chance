@@ -1,0 +1,164 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://TopDownExample/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://TopDownExample/Light2D.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 29.0
+
+[sub_resource type="ShaderMaterial" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, -4 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shield:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.8 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, -4 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.8 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, -2 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shield:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2 ) ]
+}
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 1 )
+speed = 200
+sight = 360
+
+[node name="DropShadow" type="Polygon2D" parent="."]
+color = Color( 0, 0, 0, 0.588235 )
+offset = Vector2( 0, 3 )
+polygon = PoolVector2Array( -20, 17, -16, 26, 19, 26, 23, 18, 19, 10, -16, 10 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Polygon2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( 0, -4 )
+z_index = 1
+color = Color( 0.505882, 0.560784, 0.560784, 1 )
+offset = Vector2( 0, -3 )
+polygon = PoolVector2Array( 0, -14, -17, -9, -13, 3, -6, 16, 0, 19, 6, 16, 13, 3, 17, -9 )
+
+[node name="Sprite2" type="Polygon2D" parent="Sprite"]
+material = SubResource( 4 )
+position = Vector2( 1.01328e-06, 0.0606052 )
+scale = Vector2( 1.11765, 1.12121 )
+z_index = -1
+color = Color( 0, 0, 0, 1 )
+offset = Vector2( 0, -3 )
+polygon = PoolVector2Array( 0, -14, -17, -9, -13, 3, -6, 16, 0, 19, 6, 16, 13, 3, 17, -9 )
+
+[node name="Eye" type="Polygon2D" parent="Sprite"]
+position = Vector2( 0, -9 )
+color = Color( 0.0941176, 0.929412, 0.870588, 1 )
+offset = Vector2( 0, 9 )
+polygon = PoolVector2Array( -15, -11, 0, -13, 14, -11, 1, -4 )
+
+[node name="Shield" type="Polygon2D" parent="."]
+position = Vector2( 0, -4 )
+z_index = 1
+polygon = PoolVector2Array( 11, 0, 13, 13, 19, 14, 22, 15, 24, 13, 28, 12, 28, -2, 26, 0, 22, 1, 20, -1, 18, 1, 14, 2 )
+
+[node name="Shield2" type="Polygon2D" parent="Shield"]
+position = Vector2( -4.58824, -2.41176 )
+scale = Vector2( 1.23529, 1.29412 )
+z_index = -1
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 11, 0, 13, 13, 19, 14, 22, 15, 24, 13, 28, 12, 28, -2, 26, 0, 22, 1, 20, -1, 18, 1, 14, 2 )
+
+[node name="Hand" type="Polygon2D" parent="."]
+position = Vector2( 0, -2 )
+z_index = 1
+polygon = PoolVector2Array( -21, 6, -24, 11, -19, 15, -16, 9 )
+
+[node name="Hand2" type="Polygon2D" parent="Hand"]
+position = Vector2( 10, -4.66667 )
+scale = Vector2( 1.5, 1.44444 )
+z_index = -1
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -21, 6, -24, 11, -19, 15, -16, 9 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Idle = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Detect" type="RayCast2D" parent="Node2D"]
+position = Vector2( 31, 24 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, -50 )
+
+[node name="Light2D" parent="." instance=ExtResource( 2 )]
+texture_scale = 1.0

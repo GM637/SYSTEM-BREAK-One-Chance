@@ -1,0 +1,183 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://TopDownExample/Gun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MetaBoy/MetaBoy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TopDownExample/MetaBoyTopDown.gd" type="Script" id=3]
+[ext_resource path="res://TopDownExample/Light2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TopDownExample/Jump.wav" type="AudioStream" id=5]
+[ext_resource path="res://TopDownExample/ShakeyPoly.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 22.5, 19 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MetaBoy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MetaBoy:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 320 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:amount")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.1 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Roll"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("MetaBoy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MetaBoy:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 360.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 320, 880, 320 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:amount")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.2, 0.75, 0.2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true, false ]
+}
+
+[node name="MetaPlayer" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="Camera" type="Position2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Camera"]
+current = true
+smoothing_enabled = true
+smoothing_speed = 15.0
+
+[node name="DodgeRay" type="Node2D" parent="."]
+
+[node name="DodgeCheck" type="RayCast2D" parent="DodgeRay"]
+position = Vector2( 184, -7 )
+enabled = true
+cast_to = Vector2( 0, 25 )
+
+[node name="ShakeyPoly" parent="DodgeRay/DodgeCheck" instance=ExtResource( 6 )]
+color = Color( 0.2, 1, 0, 0.776471 )
+polygon = PoolVector2Array( -8, -11, -2, 1, -19, -2, -18, 12, -1, 12, -4, 21, 3, 27, 17, 4, 1, -14 )
+
+[node name="Gun" parent="." instance=ExtResource( 1 )]
+recoil = 480.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.5, 13 )
+shape = SubResource( 1 )
+
+[node name="DropShadow" type="Polygon2D" parent="."]
+position = Vector2( 0, 3 )
+color = Color( 0, 0, 0, 0.588235 )
+polygon = PoolVector2Array( -20, 17, -16, 26, 19, 26, 23, 18, 19, 10, -16, 10 )
+
+[node name="Light2D" parent="." instance=ExtResource( 4 )]
+texture_scale = 2.5
+
+[node name="MetaBoy" parent="." instance=ExtResource( 2 )]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/Roll = SubResource( 3 )
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

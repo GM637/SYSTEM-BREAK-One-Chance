@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pizza-tower-lap-2-start-sfx.mp3-af7bf27c932d89344ce3aebc214273c8.mp3str"
+
+[deps]
+
+source_file="res://TopDownExample/pizza-tower-lap-2-start-sfx.mp3"
+dest_files=[ "res://.import/pizza-tower-lap-2-start-sfx.mp3-af7bf27c932d89344ce3aebc214273c8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

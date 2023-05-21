@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Pizza Tower OST - Thousand March (WAR).mp3-e793cedb92ec8ce7f9f68d3392caecb6.mp3str"
+
+[deps]
+
+source_file="res://TopDownExample/Pizza Tower OST - Thousand March (WAR).mp3"
+dest_files=[ "res://.import/Pizza Tower OST - Thousand March (WAR).mp3-e793cedb92ec8ce7f9f68d3392caecb6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

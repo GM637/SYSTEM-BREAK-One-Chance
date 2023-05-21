@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://TopDownExample/switch-sheet.png" type="Texture" id=1]
+[ext_resource path="res://TopDownExample/Light2D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TopDownExample/onetimeswitch.gd" type="Script" id=3]
+[ext_resource path="res://TopDownExample/GateDetect.gd" type="Script" id=4]
+[ext_resource path="res://TopDownExample/click.mp3" type="AudioStream" id=5]
+[ext_resource path="res://theme/sci-fi-theme.tres" type="Theme" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 35.2278
+
+[node name="OneSwitch" type="Sprite"]
+texture = ExtResource( 1 )
+hframes = 2
+script = ExtResource( 3 )
+
+[node name="Light2D" parent="." instance=ExtResource( 2 )]
+texture_scale = 0.5
+
+[node name="GateDetect" type="StaticBody2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GateDetect"]
+shape = SubResource( 1 )
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 20.0
+
+[node name="Text" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -69.0
+margin_top = -26.0
+margin_right = 38.0
+margin_bottom = -5.0
+theme = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "CLOSED
+"
+align = 1
+valign = 1

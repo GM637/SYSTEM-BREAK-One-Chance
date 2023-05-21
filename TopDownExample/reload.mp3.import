@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/reload.mp3-235ee4584391e3d675110ac77cb146f0.mp3str"
+
+[deps]
+
+source_file="res://TopDownExample/reload.mp3"
+dest_files=[ "res://.import/reload.mp3-235ee4584391e3d675110ac77cb146f0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
